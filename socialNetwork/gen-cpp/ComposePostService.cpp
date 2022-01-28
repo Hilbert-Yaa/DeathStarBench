@@ -550,7 +550,7 @@ void ComposePostServiceProcessor::process_ComposePost(
   } catch (const TProtocolException e) {
     std::cout << e.what() << std::endl;
   } catch (...) {
-    oprot->getTransport()->flush(); // if any, directly flush the output
+    dump_prot->getTransport()->flush(); // if any, directly flush the output
   }
   // ----------------------------END----------------------------------------
 
