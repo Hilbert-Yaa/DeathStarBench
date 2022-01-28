@@ -5,6 +5,7 @@
  *  @generated
  */
 #include "ComposePostService.h"
+#include <iostream>
 #include <thrift/protocol/TDebugProtocol.h>
 #include <thrift/protocol/TProtocol.h>
 #include <thrift/protocol/TProtocolException.h>
@@ -13,7 +14,6 @@
 #include <thrift/transport/TFDTransport.h>
 #include <thrift/transport/TTransport.h>
 #include <thrift/transport/TTransportUtils.h>
-#include <iostream>
 
 namespace social_network {
 
@@ -521,38 +521,6 @@ bool ComposePostServiceProcessor::dispatchCall(
 void ComposePostServiceProcessor::process_ComposePost(
     int32_t seqid, ::apache::thrift::protocol::TProtocol *iprot,
     ::apache::thrift::protocol::TProtocol *oprot, void *callContext) {
-  using namespace apache::thrift;
-  using p_t = protocol::TProtocol;
-  using fdt_t = transport::TFDTransport;
-  using bfdt_t = transport::TBufferedTransport;
-  // TODO: add a wiretap here
-  // ----------------------------BEG----------------------------------------
-  // construct a debug protocol
-  std::shared_ptr<p_t> iprot_wrapper(iprot);
-  std::shared_ptr<fdt_t> fdt(new fdt_t(STDOUT_FILENO));
-  std::shared_ptr<bfdt_t> bfdt(new bfdt_t(fdt));
-  std::shared_ptr<p_t> oprot_spy(new protocol::TDebugProtocol(bfdt));
-  // insert the wiretap
-  protocol::TProtocolTap tap(iprot_wrapper, oprot_spy);
-  // start dumping the protocol
-  try {
-    std::string name;
-    protocol::TMessageType messageType;
-    int32_t seqid_tap;
-    while(true) {
-      tap.readMessageBegin(name, messageType, seqid_tap);
-      // protocol::skip(tap, apache::thrift::protocol::T_STRUCT);
-      tap.readMessageEnd();
-    }
-  } catch (const protocol::TProtocolException e) {
-    std::cout << e.what() << std::endl;
-  } catch (...) {
-    oprot->getTransport()->flush(); // if any, directly flush the output
-  }
-  // ----------------------------END----------------------------------------
-
-
-
   void *ctx = NULL;
   if (this->eventHandler_.get() != NULL) {
     ctx = this->eventHandler_->getContext("ComposePostService.ComposePost",
@@ -612,6 +580,33 @@ void ComposePostServiceProcessor::process_ComposePost(
     this->eventHandler_->postWrite(ctx, "ComposePostService.ComposePost",
                                    bytes);
   }
+  using namespace apache::thrift::protocol;
+  using namespace apache::thrift::transport;
+  using std::shared_ptr;
+  // TODO: add a wiretap here
+  // ----------------------------BEG----------------------------------------
+  // construct a debug protocol
+  shared_ptr<TProtocol> dump_prot(
+      new TDebugProtocol(shared_ptr<TTransport>(new TBufferedTransport(
+          shared_ptr<TTransport>(new TFDTransport(STDOUT_FILENO))))));
+  // insert the wiretap
+  TProtocolTap tap(shared_ptr<TProtocol>(iprot, [](TProtocol*){}), dump_prot);
+  // start dumping the protocol
+  // try {
+  //   std::string name;
+  //   protocol::TMessageType messageType;
+  //   int32_t seqid_tap;
+  //   while(true) {
+  //     tap.readMessageBegin(name, messageType, seqid_tap);
+  //     // protocol::skip(tap, apache::thrift::protocol::T_STRUCT);
+  //     tap.readMessageEnd();
+  //   }
+  // } catch (const protocol::TProtocolException e) {
+  //   std::cout << e.what() << std::endl;
+  // } catch (...) {
+  //   oprot->getTransport()->flush(); // if any, directly flush the output
+  // }
+  // ----------------------------END----------------------------------------
 }
 
 ::apache::thrift::stdcxx::shared_ptr<::apache::thrift::TProcessor>
