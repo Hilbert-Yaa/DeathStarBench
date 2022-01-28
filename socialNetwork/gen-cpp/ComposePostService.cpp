@@ -522,16 +522,18 @@ void ComposePostServiceProcessor::process_ComposePost(
     int32_t seqid, ::apache::thrift::protocol::TProtocol *iprot,
     ::apache::thrift::protocol::TProtocol *oprot, void *callContext) {
   using namespace apache::thrift;
+  using p_t = protocol::TProtocol;
   using fdt_t = transport::TFDTransport;
   using bfdt_t = transport::TBufferedTransport;
   // TODO: add a wiretap here
   // ----------------------------BEG----------------------------------------
   // construct a debug protocol
+  std::shared_ptr<p_t> iprot_wrapper(iprot);
   std::shared_ptr<fdt_t> fdt(new fdt_t(STDOUT_FILENO));
   std::shared_ptr<bfdt_t> bfdt(new bfdt_t(fdt));
-  auto oprot_spy = new protocol::TDebugProtocol(bfdt);
+  std::shared_ptr<p_t> oprot_spy(new protocol::TDebugProtocol(bfdt));
   // insert the wiretap
-  protocol::TProtocolTap tap(iprot, oprot_spy);
+  protocol::TProtocolTap tap(iprot_wrapper, oprot_spy);
   // start dumping the protocol
   try {
     std::string name;
