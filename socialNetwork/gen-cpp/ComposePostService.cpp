@@ -520,13 +520,19 @@ bool ComposePostServiceProcessor::dispatchCall(
 void ComposePostServiceProcessor::process_ComposePost(
     int32_t seqid, ::apache::thrift::protocol::TProtocol *iprot,
     ::apache::thrift::protocol::TProtocol *oprot, void *callContext) {
+  using namespace apache::thrift;
+  using fdt_t = transport::TFDTransport;
+  using bfdt_t = transport::TBufferedTransport;
+  // ----------------------------BEG----------------------------------------
   // construct a debug protocol
-  using fdt_t = apache::thrift::transport::TFDTransport;
-  using bfdt_t = apache::thrift::transport::TBufferedTransport;
   std::shared_ptr<fdt_t> fdt(new fdt_t(STDOUT_FILENO));
   std::shared_ptr<bfdt_t> bfdt(new bfdt_t(fdt));
-  auto oprot_spy = new apache::thrift::protocol::TDebugProtocol(bfdt);
-  
+  auto oprot_spy = new protocol::TDebugProtocol(bfdt);
+
+  // ----------------------------END----------------------------------------
+
+
+
   void *ctx = NULL;
   if (this->eventHandler_.get() != NULL) {
     ctx = this->eventHandler_->getContext("ComposePostService.ComposePost",
