@@ -44,14 +44,14 @@ void DUMP(apache::thrift::protocol::TProtocol *iprot) {
   // start dumping the protocol
   try {
     std::string name;
-    protocol::TMessageType messageType;
+    TMessageType messageType;
     int32_t seqid_tap;
     while (true) {
       tap.readMessageBegin(name, messageType, seqid_tap);
       // protocol::skip(tap, apache::thrift::protocol::T_STRUCT);
       tap.readMessageEnd();
     }
-  } catch (const protocol::TProtocolException e) {
+  } catch (const TProtocolException e) {
     std::cout << e.what() << std::endl;
   } catch (...) {
     dump_prot->getTransport()->flush(); // if any, directly flush the output
