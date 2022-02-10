@@ -8,9 +8,11 @@
 #define ComposePostService_H
 
 #include "social_network_types.h"
+#include <memory>
 #include <thrift/TDispatchProcessor.h>
 #include <thrift/async/TConcurrentClientSyncInfo.h>
 #include <thrift/transport/TSimpleFileTransport.h>
+#include <thrift/transport/TTransport.h>
 
 namespace social_network {
 
@@ -444,7 +446,7 @@ public:
   void log(const social_network::ComposePostService_ComposePost_args &);
 
 private:
-  apache::thrift::transport::TSimpleFileTransport trans;
+  std::shared_ptr<apache::thrift::transport::TTransport> trans;
 };
 
 #ifdef _MSC_VER
