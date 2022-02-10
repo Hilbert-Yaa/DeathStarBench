@@ -45,9 +45,11 @@ services:
     depends_on:
       jaeger-agent:
         condition: service_started
-    entrypoint: ComposePostService
+    entrypoint: ["/social-network-microservices/scripts/run_compose_service.sh"]
     volumes:
       - ./config:/social-network-microservices/config
+      - ./logs:/social-network-microservices/logs
+      - ./scripts:/social-network-microservices/scripts
 
   post-storage-service:
     image: social-network-benchmark
