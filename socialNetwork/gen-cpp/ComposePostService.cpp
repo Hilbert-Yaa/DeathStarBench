@@ -7,16 +7,14 @@
 #include "ComposePostService.h"
 #include <fcntl.h>
 #include <iostream>
-#include <thrift/protocol/TDebugProtocol.h>
+#include <string>
 #include <thrift/protocol/TJSONProtocol.h>
 #include <thrift/protocol/TProtocol.h>
 #include <thrift/protocol/TProtocolException.h>
-#include <thrift/transport/PlatformSocket.h>
 #include <thrift/transport/TBufferTransports.h>
 #include <thrift/transport/TFDTransport.h>
-#include <thrift/transport/TFileTransport.h>
+#include <thrift/transport/TSimpleFileTransport.h>
 #include <thrift/transport/TTransport.h>
-#include <thrift/transport/TTransportUtils.h>
 #include <unistd.h>
 
 namespace social_network {
@@ -35,8 +33,8 @@ void TRACE(const social_network::ComposePostService_ComposePost_args &args,
   // if (fd_tracer == -1) {
   //   cout << "Failed to open file " << fname << endl;
   // }
-  TFDTransport *fdtptr =
-      new TFDTransport(fd_tracer);
+
+  TFDTransport *fdtptr = new TFDTransport(fd_tracer);
   auto dump_prot = new TJSONProtocol(shared_ptr<TTransport>(
       new TBufferedTransport(shared_ptr<TTransport>(fdtptr))));
   // auto dump_prot = new TDebugProtocol(shared_ptr<TTransport>(
@@ -44,6 +42,43 @@ void TRACE(const social_network::ComposePostService_ComposePost_args &args,
   args.write(dump_prot);
   dump_prot->getTransport()->flush();
 }
+
+void TRACE2F(const social_network::ComposePostService_ComposePost_args &args,
+             const char *fname = nullptr) {
+  using std::shared_ptr;
+  using namespace apache::thrift::protocol;
+  using namespace apache::thrift::transport;
+
+  TSimpleFileTransport trans(fname, false, true);
+  auto dump_prot = new TJSONProtocol(shared_ptr<TTransport>(
+      new TBufferedTransport(shared_ptr<TTransport>(&trans))));
+  // auto dump_prot = new TDebugProtocol(shared_ptr<TTransport>(
+  //     new TBufferedTransport(shared_ptr<TTransport>(fdtptr))));
+  args.write(dump_prot);
+  dump_prot->getTransport()->flush();
+}
+
+Tracer::Tracer(const char *fname)
+    : trans(apache::thrift::transport::TSimpleFileTransport(fname, false,
+                                                            true)) {}
+
+void Tracer::log(
+    const social_network::ComposePostService_ComposePost_args &args) {
+  using std::cerr;
+  using std::shared_ptr;
+  using namespace apache::thrift::protocol;
+  using namespace apache::thrift::transport;
+  if (!trans.isOpen()) {
+    cerr << "Failed to open file transport...\n";
+    exit(-3);
+  }
+  auto dump_prot = new TJSONProtocol(shared_ptr<TTransport>(
+      new TBufferedTransport(shared_ptr<TTransport>(&trans))));
+  args.write(dump_prot);
+  dump_prot->getTransport()->flush();
+}
+
+Tracer::~Tracer() { trans.close(); }
 
 ComposePostService_ComposePost_args::
     ~ComposePostService_ComposePost_args() throw() {}
@@ -580,7 +615,8 @@ void ComposePostServiceProcessor::process_ComposePost(
   args.read(iprot);
   iprot->readMessageEnd();
   uint32_t bytes = iprot->getTransport()->readEnd();
-  TRACE(args, "/social-network-microservices/trace.dat");
+  static Tracer tracer("/social-network-microservices/logs/trace.dat");
+  tracer.log(args);
 
   if (this->eventHandler_.get() != NULL) {
     this->eventHandler_->postRead(ctx, "ComposePostService.ComposePost", bytes);
