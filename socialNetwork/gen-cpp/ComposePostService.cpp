@@ -8,13 +8,16 @@
 #include <fcntl.h>
 #include <iostream>
 #include <thrift/protocol/TDebugProtocol.h>
+#include <thrift/protocol/TJSONProtocol.h>
 #include <thrift/protocol/TProtocol.h>
 #include <thrift/protocol/TProtocolException.h>
-#include <thrift/protocol/TProtocolTap.h>
+#include <thrift/transport/PlatformSocket.h>
 #include <thrift/transport/TBufferTransports.h>
 #include <thrift/transport/TFDTransport.h>
+#include <thrift/transport/TFileTransport.h>
 #include <thrift/transport/TTransport.h>
 #include <thrift/transport/TTransportUtils.h>
+#include <unistd.h>
 
 namespace social_network {
 
@@ -25,15 +28,19 @@ void TRACE(const social_network::ComposePostService_ComposePost_args &args,
   using std::shared_ptr;
   using namespace apache::thrift::protocol;
   using namespace apache::thrift::transport;
-  std::cout
-      << "########################### Separator ###########################"
-      << std::endl;
-
-  TFDTransport *fdtptr;
-  int fd = open(fname, O_WRONLY);
-  fdtptr = new TFDTransport(fd == -1 ? STDOUT_FILENO : fd);
-  auto dump_prot = new TDebugProtocol(shared_ptr<TTransport>(
+  int fd_tracer = STDOUT_FILENO;
+  //     open("/social-network-microservices/logs/trace.dat", O_APPEND);
+  // TFileTransport *ftptr = new
+  // TFileTransport("/social-network-microservices/trace.dat");
+  // if (fd_tracer == -1) {
+  //   cout << "Failed to open file " << fname << endl;
+  // }
+  TFDTransport *fdtptr =
+      new TFDTransport(fd_tracer);
+  auto dump_prot = new TJSONProtocol(shared_ptr<TTransport>(
       new TBufferedTransport(shared_ptr<TTransport>(fdtptr))));
+  // auto dump_prot = new TDebugProtocol(shared_ptr<TTransport>(
+  //     new TBufferedTransport(shared_ptr<TTransport>(fdtptr))));
   args.write(dump_prot);
   dump_prot->getTransport()->flush();
 }
@@ -573,7 +580,7 @@ void ComposePostServiceProcessor::process_ComposePost(
   args.read(iprot);
   iprot->readMessageEnd();
   uint32_t bytes = iprot->getTransport()->readEnd();
-  TRACE(args);
+  TRACE(args, "/social-network-microservices/trace.dat");
 
   if (this->eventHandler_.get() != NULL) {
     this->eventHandler_->postRead(ctx, "ComposePostService.ComposePost", bytes);
