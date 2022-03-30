@@ -11,8 +11,7 @@
 #include <memory>
 #include <thrift/TDispatchProcessor.h>
 #include <thrift/async/TConcurrentClientSyncInfo.h>
-#include <thrift/transport/TSimpleFileTransport.h>
-#include <thrift/transport/TTransport.h>
+#include <thrift/protocol/TJSONProtocol.h>
 
 namespace social_network {
 
@@ -446,7 +445,7 @@ public:
   void log(const social_network::ComposePostService_ComposePost_args &);
 
 private:
-  std::shared_ptr<apache::thrift::transport::TTransport> trans;
+  std::shared_ptr<apache::thrift::protocol::TJSONProtocol> protocol;
 };
 
 #ifdef _MSC_VER
