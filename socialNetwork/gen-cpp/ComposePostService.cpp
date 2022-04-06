@@ -32,8 +32,8 @@ Tracer::Tracer(const char *fname) {
   }
   auto buffered_trans = std::make_shared<TBufferedTransport>(
       std::static_pointer_cast<TTransport>(trans));
-  protocol = make_shared<TJSONProtocol>(
-      TJSONProtocol(std::static_pointer_cast<TTransport>(buffered_trans)));
+  protocol = make_shared<TBinaryProtocol>(
+      TBinaryProtocol(std::static_pointer_cast<TTransport>(buffered_trans)));
 }
 
 void Tracer::log(
