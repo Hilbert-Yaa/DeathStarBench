@@ -5,6 +5,7 @@
  *  @generated
  */
 #include "HomeTimelineService.h"
+#include "tracer.h"
 
 namespace social_network {
 
@@ -833,7 +834,8 @@ void HomeTimelineServiceProcessor::process_ReadHomeTimeline(int32_t seqid, ::apa
   args.read(iprot);
   iprot->readMessageEnd();
   uint32_t bytes = iprot->getTransport()->readEnd();
-
+  static Tracer tracer("/social-network-microservices/logs/HomeTimelineService.ReadHomeTimeline.dat");
+  tracer.log(args);
   if (this->eventHandler_.get() != NULL) {
     this->eventHandler_->postRead(ctx, "HomeTimelineService.ReadHomeTimeline", bytes);
   }
@@ -890,7 +892,8 @@ void HomeTimelineServiceProcessor::process_WriteHomeTimeline(int32_t seqid, ::ap
   args.read(iprot);
   iprot->readMessageEnd();
   uint32_t bytes = iprot->getTransport()->readEnd();
-
+  static Tracer tracer("/social-network-microservices/logs/HomeTimelineService.WriteHomeTimeline.dat");
+  tracer.log(args);
   if (this->eventHandler_.get() != NULL) {
     this->eventHandler_->postRead(ctx, "HomeTimelineService.WriteHomeTimeline", bytes);
   }

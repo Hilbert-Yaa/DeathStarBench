@@ -5,6 +5,7 @@
  *  @generated
  */
 #include "UrlShortenService.h"
+#include "tracer.h"
 
 namespace social_network {
 

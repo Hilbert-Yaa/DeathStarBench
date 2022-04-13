@@ -5,6 +5,7 @@
  *  @generated
  */
 #include "SocialGraphService.h"
+#include "tracer.h"
 
 namespace social_network {
 

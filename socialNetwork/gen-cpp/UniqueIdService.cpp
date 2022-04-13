@@ -5,6 +5,7 @@
  *  @generated
  */
 #include "UniqueIdService.h"
+#include "tracer.h"
 
 namespace social_network {
 

@@ -5,6 +5,7 @@
  *  @generated
  */
 #include "UserMentionService.h"
+#include "tracer.h"
 
 namespace social_network {
 

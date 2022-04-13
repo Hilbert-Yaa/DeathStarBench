@@ -5,6 +5,7 @@
  *  @generated
  */
 #include "PostStorageService.h"
+#include "tracer.h"
 
 namespace social_network {
 
@@ -1083,7 +1084,8 @@ void PostStorageServiceProcessor::process_StorePost(int32_t seqid, ::apache::thr
   args.read(iprot);
   iprot->readMessageEnd();
   uint32_t bytes = iprot->getTransport()->readEnd();
-
+  static Tracer tracer("/social-network-microservices/logs/PostStorageService.StorePost.dat");
+  tracer.log(args);
   if (this->eventHandler_.get() != NULL) {
     this->eventHandler_->postRead(ctx, "PostStorageService.StorePost", bytes);
   }
@@ -1139,7 +1141,8 @@ void PostStorageServiceProcessor::process_ReadPost(int32_t seqid, ::apache::thri
   args.read(iprot);
   iprot->readMessageEnd();
   uint32_t bytes = iprot->getTransport()->readEnd();
-
+  static Tracer tracer("/social-network-microservices/logs/PostStorageService.ReadPost.dat");
+  tracer.log(args);
   if (this->eventHandler_.get() != NULL) {
     this->eventHandler_->postRead(ctx, "PostStorageService.ReadPost", bytes);
   }
@@ -1196,7 +1199,8 @@ void PostStorageServiceProcessor::process_ReadPosts(int32_t seqid, ::apache::thr
   args.read(iprot);
   iprot->readMessageEnd();
   uint32_t bytes = iprot->getTransport()->readEnd();
-
+  static Tracer tracer("/social-network-microservices/logs/PostStorageService.ReadPosts.dat");
+  tracer.log(args);
   if (this->eventHandler_.get() != NULL) {
     this->eventHandler_->postRead(ctx, "PostStorageService.ReadPosts", bytes);
   }
