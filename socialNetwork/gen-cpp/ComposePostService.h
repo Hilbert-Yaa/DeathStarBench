@@ -8,10 +8,8 @@
 #define ComposePostService_H
 
 #include "social_network_types.h"
-#include <memory>
 #include <thrift/TDispatchProcessor.h>
 #include <thrift/async/TConcurrentClientSyncInfo.h>
-#include <thrift/protocol/TJSONProtocol.h>
 
 namespace social_network {
 
