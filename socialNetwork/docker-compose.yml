@@ -13,6 +13,7 @@ services:
     restart: always
     entrypoint: SocialGraphService
     volumes:
+      - ./logs:/social-network-microservices/logs
       - ./config:/social-network-microservices/config
 
   social-graph-mongodb:
@@ -45,7 +46,7 @@ services:
     depends_on:
       jaeger-agent:
         condition: service_started
-    entrypoint: ["/social-network-microservices/scripts/run_compose_service.sh"]
+    entrypoint: ComposePostService
     volumes:
       - ./config:/social-network-microservices/config
       - ./logs:/social-network-microservices/logs
@@ -64,6 +65,7 @@ services:
         condition: service_started
     entrypoint: PostStorageService
     volumes:
+      - ./logs:/social-network-microservices/logs
       - ./config:/social-network-microservices/config
 
   post-storage-memcached:
@@ -93,6 +95,7 @@ services:
         condition: service_started
     entrypoint: UserTimelineService
     volumes:
+      - ./logs:/social-network-microservices/logs
       - ./config:/social-network-microservices/config
 
   user-timeline-redis:
@@ -122,6 +125,7 @@ services:
       url-shorten-mongodb:
         condition: service_started
     volumes:
+      - ./logs:/social-network-microservices/logs
       - ./config:/social-network-microservices/config
 
   url-shorten-memcached:
@@ -151,6 +155,7 @@ services:
         condition: service_started
     entrypoint: UserService
     volumes:
+      - ./logs:/social-network-microservices/logs
       - ./config:/social-network-microservices/config
 
   user-memcached:
@@ -180,6 +185,7 @@ services:
     restart: always
     entrypoint: MediaService
     volumes:
+      - ./logs:/social-network-microservices/logs
       - ./config:/social-network-microservices/config
 
   media-memcached:
@@ -207,6 +213,7 @@ services:
         condition: service_started
     entrypoint: TextService
     volumes:
+      - ./logs:/social-network-microservices/logs
       - ./config:/social-network-microservices/config
 
   unique-id-service:
@@ -220,6 +227,7 @@ services:
         condition: service_started
     entrypoint: UniqueIdService
     volumes:
+      - ./logs:/social-network-microservices/logs
       - ./config:/social-network-microservices/config
       
   user-mention-service:
@@ -233,6 +241,7 @@ services:
     restart: always
     entrypoint: UserMentionService
     volumes:
+      - ./logs:/social-network-microservices/logs
       - ./config:/social-network-microservices/config
 
   home-timeline-service:
@@ -246,6 +255,7 @@ services:
     restart: always
     entrypoint: HomeTimelineService
     volumes:
+      - ./logs:/social-network-microservices/logs
       - ./config:/social-network-microservices/config
 
   nginx-thrift:
@@ -258,6 +268,7 @@ services:
         condition: service_started
     restart: always
     volumes:
+      - ./logs:/social-network-microservices/logs
       - ./nginx-web-server/lua-scripts:/usr/local/openresty/nginx/lua-scripts
       - ./nginx-web-server/pages:/usr/local/openresty/nginx/pages
       - ./nginx-web-server/conf/nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf
@@ -275,6 +286,7 @@ services:
       jaeger-agent:
         condition: service_started
     volumes:
+      - ./logs:/social-network-microservices/logs
       - ./media-frontend/lua-scripts:/usr/local/openresty/nginx/lua-scripts
       - ./media-frontend/conf/nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf
 
