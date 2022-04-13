@@ -19,33 +19,33 @@
 
 namespace social_network {
 
-Tracer::Tracer(const char *fname) {
-  using namespace apache::thrift::transport;
-  using namespace apache::thrift::protocol;
-  using std::cerr;
-  using std::make_shared;
-  auto trans = std::make_shared<TSimpleFileTransport>(fname, false, true);
-  if (!trans->isOpen()) {
-    cerr << "Failed to open file transport...\n";
-    exit(-3);
-  }
-  auto buffered_trans = std::make_shared<TBufferedTransport>(
-      std::static_pointer_cast<TTransport>(trans));
-  protocol = make_shared<TJSONProtocol>(
-      TJSONProtocol(std::static_pointer_cast<TTransport>(buffered_trans)));
-}
+// Tracer::Tracer(const char *fname) {
+//   using namespace apache::thrift::transport;
+//   using namespace apache::thrift::protocol;
+//   using std::cerr;
+//   using std::make_shared;
+//   auto trans = std::make_shared<TSimpleFileTransport>(fname, false, true);
+//   if (!trans->isOpen()) {
+//     cerr << "Failed to open file transport...\n";
+//     exit(-3);
+//   }
+//   auto buffered_trans = std::make_shared<TBufferedTransport>(
+//       std::static_pointer_cast<TTransport>(trans));
+//   protocol = make_shared<TJSONProtocol>(
+//       TJSONProtocol(std::static_pointer_cast<TTransport>(buffered_trans)));
+// }
 
-void Tracer::log(
-    const social_network::ComposePostService_ComposePost_args &args) {
-  using std::cerr;
-  using std::shared_ptr;
-  using namespace apache::thrift::protocol;
-  using namespace apache::thrift::transport;
-  args.write(protocol.get());
-  protocol->getTransport()->flush();
-}
+// void Tracer::log(
+//     const social_network::ComposePostService_ComposePost_args &args) {
+//   using std::cerr;
+//   using std::shared_ptr;
+//   using namespace apache::thrift::protocol;
+//   using namespace apache::thrift::transport;
+//   args.write(protocol.get());
+//   protocol->getTransport()->flush();
+// }
 
-Tracer::~Tracer() { protocol->getTransport()->close(); }
+// Tracer::~Tracer() { protocol->getTransport()->close(); }
 
 ComposePostService_ComposePost_args::
     ~ComposePostService_ComposePost_args() throw() {}
@@ -482,21 +482,6 @@ void ComposePostServiceClient::send_ComposePost(
   args.post_type = &post_type;
   args.carrier = &carrier;
   args.write(oprot_);
-
-  // ----------------------------BEG----------------------------------------
-  // TODO: dump protocols on client side
-  // std::cout << "######## Test OStream #########" << std::endl;
-  // using namespace apache::thrift::protocol;
-  // using namespace apache::thrift::transport;
-  // using std::make_shared;
-  // using std::shared_ptr;
-  // construct a debug protocol
-  // auto dump_prot =
-  //     new TDebugProtocol(shared_ptr<TTransport>(new TBufferedTransport(
-  //         shared_ptr<TTransport>(new TFDTransport(STDOUT_FILENO)))));
-  // args.write(dump_prot);
-  // dump_prot->getTransport()->flush();
-  // ----------------------------END----------------------------------------
   oprot_->writeMessageEnd();
   oprot_->getTransport()->writeEnd();
   oprot_->getTransport()->flush();

@@ -1,32 +1,46 @@
 #ifndef SOCIAL_NETWORK_MICROSERVICES_LOGGER_H
 #define SOCIAL_NETWORK_MICROSERVICES_LOGGER_H
 
+#include "social_network_types.h"
 #include <boost/log/trivial.hpp>
-#include <boost/log/utility/setup/console.hpp>
 #include <boost/log/utility/setup/common_attributes.hpp>
-
+#include <boost/log/utility/setup/console.hpp>
+#include <memory>
 #include <string.h>
+#include <thrift/protocol/TJSONProtocol.h>
 
 namespace social_network {
-#define __FILENAME__ \
-    (strrchr(__FILE__, '/') ? strrchr(__FILE__, '/') + 1 : __FILE__)
-#define LOG(severity) \
-    BOOST_LOG_TRIVIAL(severity) << "(" << __FILENAME__ << ":" \
-    << __LINE__ << ":" << __FUNCTION__ << ") "
+#define __FILENAME__                                                           \
+  (strrchr(__FILE__, '/') ? strrchr(__FILE__, '/') + 1 : __FILE__)
+#define LOG(severity)                                                          \
+  BOOST_LOG_TRIVIAL(severity)                                                  \
+      << "(" << __FILENAME__ << ":" << __LINE__ << ":" << __FUNCTION__ << ") "
 
 void init_logger() {
-  boost::log::register_simple_formatter_factory
-      <boost::log::trivial::severity_level, char>("Severity");
+  boost::log::register_simple_formatter_factory<
+      boost::log::trivial::severity_level, char>("Severity");
   boost::log::add_common_attributes();
-  boost::log::add_console_log(
-      std::cerr, boost::log::keywords::format =
-          "[%TimeStamp%] <%Severity%>: %Message%");
-  boost::log::core::get()->set_filter (
-      boost::log::trivial::severity >= boost::log::trivial::info
-  );
+  boost::log::add_console_log(std::cerr,
+                              boost::log::keywords::format =
+                                  "[%TimeStamp%] <%Severity%>: %Message%");
+  boost::log::core::get()->set_filter(boost::log::trivial::severity >=
+                                      boost::log::trivial::info);
 }
 
+class Tracer {
+public:
+  Tracer(const char *);
+  ~Tracer();
+  Tracer(const Tracer &) = delete;
+  Tracer(Tracer &&) = delete;
+  Tracer &operator=(const Tracer &) = delete;
+  Tracer &operator=(Tracer &&) = delete;
+  void log(const social_network::ComposePostService_ComposePost_args &);
 
-} //namespace social_network
+private:
+  std::shared_ptr<apache::thrift::protocol::TJSONProtocol> protocol;
+};
 
-#endif //SOCIAL_NETWORK_MICROSERVICES_LOGGER_H
+} // namespace social_network
+
+#endif // SOCIAL_NETWORK_MICROSERVICES_LOGGER_H

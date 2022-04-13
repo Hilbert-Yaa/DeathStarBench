@@ -434,19 +434,7 @@ protected:
   ::apache::thrift::async::TConcurrentClientSyncInfo sync_;
 };
 
-class Tracer {
-public:
-  Tracer(const char *);
-  ~Tracer();
-  Tracer(const Tracer &) = delete;
-  Tracer(Tracer &&) = delete;
-  Tracer &operator=(const Tracer &) = delete;
-  Tracer &operator=(Tracer &&) = delete;
-  void log(const social_network::ComposePostService_ComposePost_args &);
 
-private:
-  std::shared_ptr<apache::thrift::protocol::TJSONProtocol> protocol;
-};
 
 #ifdef _MSC_VER
 #pragma warning(pop)
