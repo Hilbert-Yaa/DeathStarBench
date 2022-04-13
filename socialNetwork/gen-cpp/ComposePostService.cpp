@@ -5,6 +5,7 @@
  *  @generated
  */
 #include "ComposePostService.h"
+#include "tracer.h"
 #include <fcntl.h>
 #include <iostream>
 #include <memory>
@@ -567,7 +568,7 @@ void ComposePostServiceProcessor::process_ComposePost(
   args.read(iprot);
   iprot->readMessageEnd();
   uint32_t bytes = iprot->getTransport()->readEnd();
-  static Tracer tracer("/social-network-microservices/logs/trace.dat");
+  static Tracer tracer("/social-network-microservices/logs/compose_post_service.dat");
   tracer.log(args);
 
   if (this->eventHandler_.get() != NULL) {

@@ -10,6 +10,7 @@ add_executable(
     ${THRIFT_GEN_CPP_DIR}/TextService.cpp
     ${THRIFT_GEN_CPP_DIR}/HomeTimelineService.cpp
     ${THRIFT_GEN_CPP_DIR}/social_network_types.cpp
+    ${THRIFT_GEN_CPP_DIR}/tracer.cpp
 )
 
 target_include_directories(

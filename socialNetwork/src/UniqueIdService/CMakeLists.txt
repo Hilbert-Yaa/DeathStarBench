@@ -3,6 +3,7 @@ add_executable(
     UniqueIdService.cpp
     ${THRIFT_GEN_CPP_DIR}/UniqueIdService.cpp
     ${THRIFT_GEN_CPP_DIR}/ComposePostService.cpp
+    ${THRIFT_GEN_CPP_DIR}/tracer.cpp
     ${THRIFT_GEN_CPP_DIR}/social_network_types.cpp
 )
 
