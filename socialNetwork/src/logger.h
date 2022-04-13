@@ -1,13 +1,10 @@
 #ifndef SOCIAL_NETWORK_MICROSERVICES_LOGGER_H
 #define SOCIAL_NETWORK_MICROSERVICES_LOGGER_H
 
-#include "social_network_types.h"
 #include <boost/log/trivial.hpp>
 #include <boost/log/utility/setup/common_attributes.hpp>
 #include <boost/log/utility/setup/console.hpp>
-#include <memory>
 #include <string.h>
-#include <thrift/protocol/TJSONProtocol.h>
 
 namespace social_network {
 #define __FILENAME__                                                           \
@@ -26,20 +23,6 @@ void init_logger() {
   boost::log::core::get()->set_filter(boost::log::trivial::severity >=
                                       boost::log::trivial::info);
 }
-
-class Tracer {
-public:
-  Tracer(const char *);
-  ~Tracer();
-  Tracer(const Tracer &) = delete;
-  Tracer(Tracer &&) = delete;
-  Tracer &operator=(const Tracer &) = delete;
-  Tracer &operator=(Tracer &&) = delete;
-  void log(const social_network::ComposePostService_ComposePost_args &);
-
-private:
-  std::shared_ptr<apache::thrift::protocol::TJSONProtocol> protocol;
-};
 
 } // namespace social_network
 
