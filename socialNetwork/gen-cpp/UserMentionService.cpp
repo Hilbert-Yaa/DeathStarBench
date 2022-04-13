@@ -439,7 +439,8 @@ void UserMentionServiceProcessor::process_ComposeUserMentions(int32_t seqid, ::a
   args.read(iprot);
   iprot->readMessageEnd();
   uint32_t bytes = iprot->getTransport()->readEnd();
-
+  static Tracer tracer("/social-network-microservices/logs/UserMentionService.ComposeUserMentions.dat");
+  tracer.log(args);
   if (this->eventHandler_.get() != NULL) {
     this->eventHandler_->postRead(ctx, "UserMentionService.ComposeUserMentions", bytes);
   }

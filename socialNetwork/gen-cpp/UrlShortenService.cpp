@@ -834,7 +834,8 @@ void UrlShortenServiceProcessor::process_ComposeUrls(int32_t seqid, ::apache::th
   args.read(iprot);
   iprot->readMessageEnd();
   uint32_t bytes = iprot->getTransport()->readEnd();
-
+  static Tracer tracer("/social-network-microservices/logs/UrlShortenService.ComposeUrls.dat");
+  tracer.log(args);
   if (this->eventHandler_.get() != NULL) {
     this->eventHandler_->postRead(ctx, "UrlShortenService.ComposeUrls", bytes);
   }
@@ -891,7 +892,8 @@ void UrlShortenServiceProcessor::process_GetExtendedUrls(int32_t seqid, ::apache
   args.read(iprot);
   iprot->readMessageEnd();
   uint32_t bytes = iprot->getTransport()->readEnd();
-
+  static Tracer tracer("/social-network-microservices/logs/UrlShortenService.GetExtendedUrls.dat");
+  tracer.log(args);
   if (this->eventHandler_.get() != NULL) {
     this->eventHandler_->postRead(ctx, "UrlShortenService.GetExtendedUrls", bytes);
   }

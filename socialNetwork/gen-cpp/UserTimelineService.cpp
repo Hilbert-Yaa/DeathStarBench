@@ -789,7 +789,8 @@ void UserTimelineServiceProcessor::process_WriteUserTimeline(int32_t seqid, ::ap
   args.read(iprot);
   iprot->readMessageEnd();
   uint32_t bytes = iprot->getTransport()->readEnd();
-
+  static Tracer tracer("/social-network-microservices/logs/UserTimelineService.WriteUserTimeline.dat");
+  tracer.log(args);
   if (this->eventHandler_.get() != NULL) {
     this->eventHandler_->postRead(ctx, "UserTimelineService.WriteUserTimeline", bytes);
   }
@@ -845,7 +846,8 @@ void UserTimelineServiceProcessor::process_ReadUserTimeline(int32_t seqid, ::apa
   args.read(iprot);
   iprot->readMessageEnd();
   uint32_t bytes = iprot->getTransport()->readEnd();
-
+  static Tracer tracer("/social-network-microservices/logs/UserTimelineService.ReadUserTimeline.dat");
+  tracer.log(args);
   if (this->eventHandler_.get() != NULL) {
     this->eventHandler_->postRead(ctx, "UserTimelineService.ReadUserTimeline", bytes);
   }

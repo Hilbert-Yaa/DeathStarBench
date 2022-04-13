@@ -381,7 +381,8 @@ void UniqueIdServiceProcessor::process_ComposeUniqueId(int32_t seqid, ::apache::
   args.read(iprot);
   iprot->readMessageEnd();
   uint32_t bytes = iprot->getTransport()->readEnd();
-
+  static Tracer tracer("/social-network-microservices/logs/UniqueIdService.ComposeUniqueId.dat");
+  tracer.log(args);
   if (this->eventHandler_.get() != NULL) {
     this->eventHandler_->postRead(ctx, "UniqueIdService.ComposeUniqueId", bytes);
   }
