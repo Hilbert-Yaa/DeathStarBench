@@ -6,17 +6,6 @@
  */
 #include "ComposePostService.h"
 #include "tracer.h"
-#include <fcntl.h>
-#include <iostream>
-#include <memory>
-#include <string>
-#include <thrift/protocol/TProtocol.h>
-#include <thrift/protocol/TProtocolException.h>
-#include <thrift/transport/TBufferTransports.h>
-#include <thrift/transport/TFDTransport.h>
-#include <thrift/transport/TSimpleFileTransport.h>
-#include <thrift/transport/TTransport.h>
-#include <unistd.h>
 
 namespace social_network {
 
