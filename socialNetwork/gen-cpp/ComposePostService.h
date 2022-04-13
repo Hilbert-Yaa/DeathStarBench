@@ -12,7 +12,6 @@
 #include <thrift/TDispatchProcessor.h>
 #include <thrift/async/TConcurrentClientSyncInfo.h>
 #include <thrift/protocol/TJSONProtocol.h>
-#include <thrift/protocol/TBinaryProtocol.h>
 
 namespace social_network {
 
@@ -446,7 +445,7 @@ public:
   void log(const social_network::ComposePostService_ComposePost_args &);
 
 private:
-  std::shared_ptr<apache::thrift::protocol::TBinaryProtocol> protocol;
+  std::shared_ptr<apache::thrift::protocol::TJSONProtocol> protocol;
 };
 
 #ifdef _MSC_VER

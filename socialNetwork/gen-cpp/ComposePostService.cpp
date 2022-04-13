@@ -9,7 +9,6 @@
 #include <iostream>
 #include <memory>
 #include <string>
-#include <thrift/protocol/TJSONProtocol.h>
 #include <thrift/protocol/TProtocol.h>
 #include <thrift/protocol/TProtocolException.h>
 #include <thrift/transport/TBufferTransports.h>
@@ -32,8 +31,8 @@ Tracer::Tracer(const char *fname) {
   }
   auto buffered_trans = std::make_shared<TBufferedTransport>(
       std::static_pointer_cast<TTransport>(trans));
-  protocol = make_shared<TBinaryProtocol>(
-      TBinaryProtocol(std::static_pointer_cast<TTransport>(buffered_trans)));
+  protocol = make_shared<TJSONProtocol>(
+      TJSONProtocol(std::static_pointer_cast<TTransport>(buffered_trans)));
 }
 
 void Tracer::log(
