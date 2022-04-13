@@ -3,6 +3,7 @@ add_executable(
     UrlShortenService.cpp
     ${THRIFT_GEN_CPP_DIR}/UrlShortenService.cpp
     ${THRIFT_GEN_CPP_DIR}/social_network_types.cpp
+    ${THRIFT_GEN_CPP_DIR}/tracer.cpp
 )
 
 target_include_directories(
