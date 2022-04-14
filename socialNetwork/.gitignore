@@ -1,2 +1,8 @@
 demo
 logs/**
+# rules for mongoc dependency
+mongo-c-driver-1.13.0/
+# rules for CMake build cache
+CMakeFiles/
+CMakeCache.txt
+src/generate*
