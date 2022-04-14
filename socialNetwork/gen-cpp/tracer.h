@@ -2,6 +2,7 @@
 
 #include <memory>
 #include <thrift/protocol/TJSONProtocol.h>
+#include <thrift/protocol/TBinaryProtocol.h>
 #include <mutex>
 #include <thrift/protocol/TProtocol.h>
 namespace social_network {
@@ -21,7 +22,7 @@ public:
   }
 
 private:
-  std::shared_ptr<apache::thrift::protocol::TProtocol> protocol;
+  std::shared_ptr<apache::thrift::protocol::TBinaryProtocol> protocol;
   static std::mutex m;
 };
 
