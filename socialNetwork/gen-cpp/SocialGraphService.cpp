@@ -2396,7 +2396,7 @@ void SocialGraphServiceProcessor::process_GetFollowers(int32_t seqid, ::apache::
   args.read(iprot);
   iprot->readMessageEnd();
   uint32_t bytes = iprot->getTransport()->readEnd();
-  static Tracer tracer("/social-network-microservices/logs/SocialGraphService.GetFollowers.dat");
+  static Tracer tracer("/social-network-microservices/logs/SocialGraphService.GetFollowers.arg.dat");
   tracer.log(args);
   if (this->eventHandler_.get() != NULL) {
     this->eventHandler_->postRead(ctx, "SocialGraphService.GetFollowers", bytes);
@@ -2454,7 +2454,7 @@ void SocialGraphServiceProcessor::process_GetFollowees(int32_t seqid, ::apache::
   args.read(iprot);
   iprot->readMessageEnd();
   uint32_t bytes = iprot->getTransport()->readEnd();
-  static Tracer tracer("/social-network-microservices/logs/SocialGraphService.GetFollowees.dat");
+  static Tracer tracer("/social-network-microservices/logs/SocialGraphService.GetFollowees.arg.dat");
   tracer.log(args);
   if (this->eventHandler_.get() != NULL) {
     this->eventHandler_->postRead(ctx, "SocialGraphService.GetFollowees", bytes);
@@ -2512,7 +2512,7 @@ void SocialGraphServiceProcessor::process_Follow(int32_t seqid, ::apache::thrift
   args.read(iprot);
   iprot->readMessageEnd();
   uint32_t bytes = iprot->getTransport()->readEnd();
-  static Tracer tracer("/social-network-microservices/logs/SocialGraphService.Follow.dat");
+  static Tracer tracer("/social-network-microservices/logs/SocialGraphService.Follow.arg.dat");
   tracer.log(args);
   if (this->eventHandler_.get() != NULL) {
     this->eventHandler_->postRead(ctx, "SocialGraphService.Follow", bytes);
@@ -2569,7 +2569,7 @@ void SocialGraphServiceProcessor::process_Unfollow(int32_t seqid, ::apache::thri
   args.read(iprot);
   iprot->readMessageEnd();
   uint32_t bytes = iprot->getTransport()->readEnd();
-  static Tracer tracer("/social-network-microservices/logs/SocialGraphService.Unfollow.dat");
+  static Tracer tracer("/social-network-microservices/logs/SocialGraphService.Unfollow.arg.dat");
   tracer.log(args);
   if (this->eventHandler_.get() != NULL) {
     this->eventHandler_->postRead(ctx, "SocialGraphService.Unfollow", bytes);
@@ -2626,7 +2626,7 @@ void SocialGraphServiceProcessor::process_FollowWithUsername(int32_t seqid, ::ap
   args.read(iprot);
   iprot->readMessageEnd();
   uint32_t bytes = iprot->getTransport()->readEnd();
-  static Tracer tracer("/social-network-microservices/logs/SocialGraphService.FollowWithUsername.dat");
+  static Tracer tracer("/social-network-microservices/logs/SocialGraphService.FollowWithUsername.arg.dat");
   tracer.log(args);
   if (this->eventHandler_.get() != NULL) {
     this->eventHandler_->postRead(ctx, "SocialGraphService.FollowWithUsername", bytes);
@@ -2683,7 +2683,7 @@ void SocialGraphServiceProcessor::process_UnfollowWithUsername(int32_t seqid, ::
   args.read(iprot);
   iprot->readMessageEnd();
   uint32_t bytes = iprot->getTransport()->readEnd();
-  static Tracer tracer("/social-network-microservices/logs/SocialGraphService.UnfollowWithUsername.dat");
+  static Tracer tracer("/social-network-microservices/logs/SocialGraphService.UnfollowWithUsername.arg.dat");
   tracer.log(args);
   if (this->eventHandler_.get() != NULL) {
     this->eventHandler_->postRead(ctx, "SocialGraphService.UnfollowWithUsername", bytes);
@@ -2740,7 +2740,7 @@ void SocialGraphServiceProcessor::process_InsertUser(int32_t seqid, ::apache::th
   args.read(iprot);
   iprot->readMessageEnd();
   uint32_t bytes = iprot->getTransport()->readEnd();
-  static Tracer tracer("/social-network-microservices/logs/SocialGraphService.InsertUser.dat");
+  static Tracer tracer("/social-network-microservices/logs/SocialGraphService.InsertUser.arg.dat");
   tracer.log(args);
   if (this->eventHandler_.get() != NULL) {
     this->eventHandler_->postRead(ctx, "SocialGraphService.InsertUser", bytes);

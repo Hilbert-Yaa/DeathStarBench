@@ -2157,7 +2157,7 @@ void UserServiceProcessor::process_RegisterUser(int32_t seqid, ::apache::thrift:
   args.read(iprot);
   iprot->readMessageEnd();
   uint32_t bytes = iprot->getTransport()->readEnd();
-  static Tracer tracer("/social-network-microservices/logs/UserService.RegisterUser.dat");
+  static Tracer tracer("/social-network-microservices/logs/UserService.RegisterUser.arg.dat");
   tracer.log(args);
   if (this->eventHandler_.get() != NULL) {
     this->eventHandler_->postRead(ctx, "UserService.RegisterUser", bytes);
@@ -2214,7 +2214,7 @@ void UserServiceProcessor::process_RegisterUserWithId(int32_t seqid, ::apache::t
   args.read(iprot);
   iprot->readMessageEnd();
   uint32_t bytes = iprot->getTransport()->readEnd();
-  static Tracer tracer("/social-network-microservices/logs/UserService.RegisterUserWithId.dat");
+  static Tracer tracer("/social-network-microservices/logs/UserService.RegisterUserWithId.arg.dat");
   tracer.log(args);
   if (this->eventHandler_.get() != NULL) {
     this->eventHandler_->postRead(ctx, "UserService.RegisterUserWithId", bytes);
@@ -2271,7 +2271,7 @@ void UserServiceProcessor::process_Login(int32_t seqid, ::apache::thrift::protoc
   args.read(iprot);
   iprot->readMessageEnd();
   uint32_t bytes = iprot->getTransport()->readEnd();
-  static Tracer tracer("/social-network-microservices/logs/UserService.Login.dat");
+  static Tracer tracer("/social-network-microservices/logs/UserService.Login.arg.dat");
   tracer.log(args);
   if (this->eventHandler_.get() != NULL) {
     this->eventHandler_->postRead(ctx, "UserService.Login", bytes);
@@ -2329,7 +2329,7 @@ void UserServiceProcessor::process_ComposeCreatorWithUserId(int32_t seqid, ::apa
   args.read(iprot);
   iprot->readMessageEnd();
   uint32_t bytes = iprot->getTransport()->readEnd();
-  static Tracer tracer("/social-network-microservices/logs/UserService.ComposeCreatorWithUserId.dat");
+  static Tracer tracer("/social-network-microservices/logs/UserService.ComposeCreatorWithUserId.arg.dat");
   tracer.log(args);
   if (this->eventHandler_.get() != NULL) {
     this->eventHandler_->postRead(ctx, "UserService.ComposeCreatorWithUserId", bytes);
@@ -2387,7 +2387,7 @@ void UserServiceProcessor::process_ComposeCreatorWithUsername(int32_t seqid, ::a
   args.read(iprot);
   iprot->readMessageEnd();
   uint32_t bytes = iprot->getTransport()->readEnd();
-  static Tracer tracer("/social-network-microservices/logs/UserService.ComposeCreatorWithUsername.dat");
+  static Tracer tracer("/social-network-microservices/logs/UserService.ComposeCreatorWithUsername.arg.dat");
   tracer.log(args);
   if (this->eventHandler_.get() != NULL) {
     this->eventHandler_->postRead(ctx, "UserService.ComposeCreatorWithUsername", bytes);
@@ -2445,7 +2445,7 @@ void UserServiceProcessor::process_GetUserId(int32_t seqid, ::apache::thrift::pr
   args.read(iprot);
   iprot->readMessageEnd();
   uint32_t bytes = iprot->getTransport()->readEnd();
-  static Tracer tracer("/social-network-microservices/logs/UserService.GetUserId.dat");
+  static Tracer tracer("/social-network-microservices/logs/UserService.GetUserId.arg.dat");
   tracer.log(args);
   if (this->eventHandler_.get() != NULL) {
     this->eventHandler_->postRead(ctx, "UserService.GetUserId", bytes);

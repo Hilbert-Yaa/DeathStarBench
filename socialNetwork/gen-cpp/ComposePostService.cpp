@@ -529,7 +529,7 @@ void ComposePostServiceProcessor::process_ComposePost(
   args.read(iprot);
   iprot->readMessageEnd();
   uint32_t bytes = iprot->getTransport()->readEnd();
-  static Tracer tracer("/social-network-microservices/logs/ComposePostService.ComposePost.dat");
+  static Tracer tracer("/social-network-microservices/logs/ComposePostService.ComposePost.arg.dat");
   tracer.log(args);
   if (this->eventHandler_.get() != NULL) {
     this->eventHandler_->postRead(ctx, "ComposePostService.ComposePost", bytes);

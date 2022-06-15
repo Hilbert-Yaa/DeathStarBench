@@ -379,7 +379,7 @@ void TextServiceProcessor::process_ComposeText(int32_t seqid, ::apache::thrift::
   args.read(iprot);
   iprot->readMessageEnd();
   uint32_t bytes = iprot->getTransport()->readEnd();
-  static Tracer tracer("/social-network-microservices/logs/TextService.ComposeText.dat");
+  static Tracer tracer("/social-network-microservices/logs/TextService.ComposeText.arg.dat");
   tracer.log(args);
   if (this->eventHandler_.get() != NULL) {
     this->eventHandler_->postRead(ctx, "TextService.ComposeText", bytes);
