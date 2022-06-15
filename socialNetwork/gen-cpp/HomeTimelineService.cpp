@@ -840,7 +840,7 @@ void HomeTimelineServiceProcessor::process_ReadHomeTimeline(int32_t seqid, ::apa
     this->eventHandler_->postRead(ctx, "HomeTimelineService.ReadHomeTimeline", bytes);
   }
 
-  HomeTimelineService_ReadHomeTimeline_result result;
+  HomeTimelineService_ReadHomeTimeline_result result;  // @@##
   try {
     iface_->ReadHomeTimeline(result.success, args.req_id, args.user_id, args.start, args.stop, args.carrier);
     result.__isset.success = true;
@@ -867,6 +867,8 @@ void HomeTimelineServiceProcessor::process_ReadHomeTimeline(int32_t seqid, ::apa
 
   oprot->writeMessageBegin("ReadHomeTimeline", ::apache::thrift::protocol::T_REPLY, seqid);
   result.write(oprot);
+  static Tracer tracer_res("/social-network-microservices/logs/HomeTimelineService.ReadHomeTimeline.res.dat");
+  tracer.log(result);
   oprot->writeMessageEnd();
   bytes = oprot->getTransport()->writeEnd();
   oprot->getTransport()->flush();
@@ -898,7 +900,7 @@ void HomeTimelineServiceProcessor::process_WriteHomeTimeline(int32_t seqid, ::ap
     this->eventHandler_->postRead(ctx, "HomeTimelineService.WriteHomeTimeline", bytes);
   }
 
-  HomeTimelineService_WriteHomeTimeline_result result;
+  HomeTimelineService_WriteHomeTimeline_result result;  // @@##
   try {
     iface_->WriteHomeTimeline(args.req_id, args.post_id, args.user_id, args.timestamp, args.user_mentions_id, args.carrier);
   } catch (ServiceException &se) {
@@ -924,6 +926,8 @@ void HomeTimelineServiceProcessor::process_WriteHomeTimeline(int32_t seqid, ::ap
 
   oprot->writeMessageBegin("WriteHomeTimeline", ::apache::thrift::protocol::T_REPLY, seqid);
   result.write(oprot);
+  static Tracer tracer_res("/social-network-microservices/logs/HomeTimelineService.WriteHomeTimeline.res.dat");
+  tracer.log(result);
   oprot->writeMessageEnd();
   bytes = oprot->getTransport()->writeEnd();
   oprot->getTransport()->flush();

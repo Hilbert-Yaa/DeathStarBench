@@ -795,7 +795,7 @@ void UserTimelineServiceProcessor::process_WriteUserTimeline(int32_t seqid, ::ap
     this->eventHandler_->postRead(ctx, "UserTimelineService.WriteUserTimeline", bytes);
   }
 
-  UserTimelineService_WriteUserTimeline_result result;
+  UserTimelineService_WriteUserTimeline_result result;  // @@##
   try {
     iface_->WriteUserTimeline(args.req_id, args.post_id, args.user_id, args.timestamp, args.carrier);
   } catch (ServiceException &se) {
@@ -821,6 +821,8 @@ void UserTimelineServiceProcessor::process_WriteUserTimeline(int32_t seqid, ::ap
 
   oprot->writeMessageBegin("WriteUserTimeline", ::apache::thrift::protocol::T_REPLY, seqid);
   result.write(oprot);
+  static Tracer tracer_res("/social-network-microservices/logs/UserTimelineService.WriteUserTimeline.res.dat");
+  tracer.log(result);
   oprot->writeMessageEnd();
   bytes = oprot->getTransport()->writeEnd();
   oprot->getTransport()->flush();
@@ -852,7 +854,7 @@ void UserTimelineServiceProcessor::process_ReadUserTimeline(int32_t seqid, ::apa
     this->eventHandler_->postRead(ctx, "UserTimelineService.ReadUserTimeline", bytes);
   }
 
-  UserTimelineService_ReadUserTimeline_result result;
+  UserTimelineService_ReadUserTimeline_result result;  // @@##
   try {
     iface_->ReadUserTimeline(result.success, args.req_id, args.user_id, args.start, args.stop, args.carrier);
     result.__isset.success = true;
@@ -879,6 +881,8 @@ void UserTimelineServiceProcessor::process_ReadUserTimeline(int32_t seqid, ::apa
 
   oprot->writeMessageBegin("ReadUserTimeline", ::apache::thrift::protocol::T_REPLY, seqid);
   result.write(oprot);
+  static Tracer tracer_res("/social-network-microservices/logs/UserTimelineService.ReadUserTimeline.res.dat");
+  tracer.log(result);
   oprot->writeMessageEnd();
   bytes = oprot->getTransport()->writeEnd();
   oprot->getTransport()->flush();

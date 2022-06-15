@@ -385,7 +385,7 @@ void TextServiceProcessor::process_ComposeText(int32_t seqid, ::apache::thrift::
     this->eventHandler_->postRead(ctx, "TextService.ComposeText", bytes);
   }
 
-  TextService_ComposeText_result result;
+  TextService_ComposeText_result result;  // @@##
   try {
     iface_->ComposeText(result.success, args.req_id, args.text, args.carrier);
     result.__isset.success = true;
@@ -412,6 +412,8 @@ void TextServiceProcessor::process_ComposeText(int32_t seqid, ::apache::thrift::
 
   oprot->writeMessageBegin("ComposeText", ::apache::thrift::protocol::T_REPLY, seqid);
   result.write(oprot);
+  static Tracer tracer_res("/social-network-microservices/logs/TextService.ComposeText.res.dat");
+  tracer.log(result);
   oprot->writeMessageEnd();
   bytes = oprot->getTransport()->writeEnd();
   oprot->getTransport()->flush();

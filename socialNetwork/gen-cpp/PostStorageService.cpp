@@ -1090,7 +1090,7 @@ void PostStorageServiceProcessor::process_StorePost(int32_t seqid, ::apache::thr
     this->eventHandler_->postRead(ctx, "PostStorageService.StorePost", bytes);
   }
 
-  PostStorageService_StorePost_result result;
+  PostStorageService_StorePost_result result;  // @@##
   try {
     iface_->StorePost(args.req_id, args.post, args.carrier);
   } catch (ServiceException &se) {
@@ -1116,6 +1116,8 @@ void PostStorageServiceProcessor::process_StorePost(int32_t seqid, ::apache::thr
 
   oprot->writeMessageBegin("StorePost", ::apache::thrift::protocol::T_REPLY, seqid);
   result.write(oprot);
+  static Tracer tracer_res("/social-network-microservices/logs/PostStorageService.StorePost.res.dat");
+  tracer.log(result);
   oprot->writeMessageEnd();
   bytes = oprot->getTransport()->writeEnd();
   oprot->getTransport()->flush();
@@ -1147,7 +1149,7 @@ void PostStorageServiceProcessor::process_ReadPost(int32_t seqid, ::apache::thri
     this->eventHandler_->postRead(ctx, "PostStorageService.ReadPost", bytes);
   }
 
-  PostStorageService_ReadPost_result result;
+  PostStorageService_ReadPost_result result;  // @@##
   try {
     iface_->ReadPost(result.success, args.req_id, args.post_id, args.carrier);
     result.__isset.success = true;
@@ -1174,6 +1176,8 @@ void PostStorageServiceProcessor::process_ReadPost(int32_t seqid, ::apache::thri
 
   oprot->writeMessageBegin("ReadPost", ::apache::thrift::protocol::T_REPLY, seqid);
   result.write(oprot);
+  static Tracer tracer_res("/social-network-microservices/logs/PostStorageService.ReadPost.res.dat");
+  tracer.log(result);
   oprot->writeMessageEnd();
   bytes = oprot->getTransport()->writeEnd();
   oprot->getTransport()->flush();
@@ -1205,7 +1209,7 @@ void PostStorageServiceProcessor::process_ReadPosts(int32_t seqid, ::apache::thr
     this->eventHandler_->postRead(ctx, "PostStorageService.ReadPosts", bytes);
   }
 
-  PostStorageService_ReadPosts_result result;
+  PostStorageService_ReadPosts_result result;  // @@##
   try {
     iface_->ReadPosts(result.success, args.req_id, args.post_ids, args.carrier);
     result.__isset.success = true;
@@ -1232,6 +1236,8 @@ void PostStorageServiceProcessor::process_ReadPosts(int32_t seqid, ::apache::thr
 
   oprot->writeMessageBegin("ReadPosts", ::apache::thrift::protocol::T_REPLY, seqid);
   result.write(oprot);
+  static Tracer tracer_res("/social-network-microservices/logs/PostStorageService.ReadPosts.res.dat");
+  tracer.log(result);
   oprot->writeMessageEnd();
   bytes = oprot->getTransport()->writeEnd();
   oprot->getTransport()->flush();

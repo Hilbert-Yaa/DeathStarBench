@@ -535,7 +535,7 @@ void ComposePostServiceProcessor::process_ComposePost(
     this->eventHandler_->postRead(ctx, "ComposePostService.ComposePost", bytes);
   }
 
-  ComposePostService_ComposePost_result result;
+  ComposePostService_ComposePost_result result;  // @@##
   try {
     iface_->ComposePost(args.req_id, args.username, args.user_id, args.text,
                         args.media_ids, args.media_types, args.post_type,
@@ -565,6 +565,8 @@ void ComposePostServiceProcessor::process_ComposePost(
   oprot->writeMessageBegin("ComposePost", ::apache::thrift::protocol::T_REPLY,
                            seqid);
   result.write(oprot);
+  static Tracer tracer_res("/social-network-microservices/logs/ComposePostService.ComposePost.res.dat");
+  tracer.log(result);
   oprot->writeMessageEnd();
   bytes = oprot->getTransport()->writeEnd();
   oprot->getTransport()->flush();

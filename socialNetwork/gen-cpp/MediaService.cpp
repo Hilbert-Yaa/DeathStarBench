@@ -490,7 +490,7 @@ void MediaServiceProcessor::process_ComposeMedia(int32_t seqid, ::apache::thrift
     this->eventHandler_->postRead(ctx, "MediaService.ComposeMedia", bytes);
   }
 
-  MediaService_ComposeMedia_result result;
+  MediaService_ComposeMedia_result result;  // @@##
   try {
     iface_->ComposeMedia(result.success, args.req_id, args.media_types, args.media_ids, args.carrier);
     result.__isset.success = true;
@@ -517,6 +517,8 @@ void MediaServiceProcessor::process_ComposeMedia(int32_t seqid, ::apache::thrift
 
   oprot->writeMessageBegin("ComposeMedia", ::apache::thrift::protocol::T_REPLY, seqid);
   result.write(oprot);
+  static Tracer tracer_res("/social-network-microservices/logs/MediaService.ComposeMedia.res.dat");
+  tracer.log(result);
   oprot->writeMessageEnd();
   bytes = oprot->getTransport()->writeEnd();
   oprot->getTransport()->flush();

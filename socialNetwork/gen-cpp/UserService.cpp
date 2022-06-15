@@ -2163,7 +2163,7 @@ void UserServiceProcessor::process_RegisterUser(int32_t seqid, ::apache::thrift:
     this->eventHandler_->postRead(ctx, "UserService.RegisterUser", bytes);
   }
 
-  UserService_RegisterUser_result result;
+  UserService_RegisterUser_result result;  // @@##
   try {
     iface_->RegisterUser(args.req_id, args.first_name, args.last_name, args.username, args.password, args.carrier);
   } catch (ServiceException &se) {
@@ -2189,6 +2189,8 @@ void UserServiceProcessor::process_RegisterUser(int32_t seqid, ::apache::thrift:
 
   oprot->writeMessageBegin("RegisterUser", ::apache::thrift::protocol::T_REPLY, seqid);
   result.write(oprot);
+  static Tracer tracer_res("/social-network-microservices/logs/UserService.RegisterUser.res.dat");
+  tracer.log(result);
   oprot->writeMessageEnd();
   bytes = oprot->getTransport()->writeEnd();
   oprot->getTransport()->flush();
@@ -2220,7 +2222,7 @@ void UserServiceProcessor::process_RegisterUserWithId(int32_t seqid, ::apache::t
     this->eventHandler_->postRead(ctx, "UserService.RegisterUserWithId", bytes);
   }
 
-  UserService_RegisterUserWithId_result result;
+  UserService_RegisterUserWithId_result result;  // @@##
   try {
     iface_->RegisterUserWithId(args.req_id, args.first_name, args.last_name, args.username, args.password, args.user_id, args.carrier);
   } catch (ServiceException &se) {
@@ -2246,6 +2248,8 @@ void UserServiceProcessor::process_RegisterUserWithId(int32_t seqid, ::apache::t
 
   oprot->writeMessageBegin("RegisterUserWithId", ::apache::thrift::protocol::T_REPLY, seqid);
   result.write(oprot);
+  static Tracer tracer_res("/social-network-microservices/logs/UserService.RegisterUserWithId.res.dat");
+  tracer.log(result);
   oprot->writeMessageEnd();
   bytes = oprot->getTransport()->writeEnd();
   oprot->getTransport()->flush();
@@ -2277,7 +2281,7 @@ void UserServiceProcessor::process_Login(int32_t seqid, ::apache::thrift::protoc
     this->eventHandler_->postRead(ctx, "UserService.Login", bytes);
   }
 
-  UserService_Login_result result;
+  UserService_Login_result result;  // @@##
   try {
     iface_->Login(result.success, args.req_id, args.username, args.password, args.carrier);
     result.__isset.success = true;
@@ -2304,6 +2308,8 @@ void UserServiceProcessor::process_Login(int32_t seqid, ::apache::thrift::protoc
 
   oprot->writeMessageBegin("Login", ::apache::thrift::protocol::T_REPLY, seqid);
   result.write(oprot);
+  static Tracer tracer_res("/social-network-microservices/logs/UserService.Login.res.dat");
+  tracer.log(result);
   oprot->writeMessageEnd();
   bytes = oprot->getTransport()->writeEnd();
   oprot->getTransport()->flush();
@@ -2335,7 +2341,7 @@ void UserServiceProcessor::process_ComposeCreatorWithUserId(int32_t seqid, ::apa
     this->eventHandler_->postRead(ctx, "UserService.ComposeCreatorWithUserId", bytes);
   }
 
-  UserService_ComposeCreatorWithUserId_result result;
+  UserService_ComposeCreatorWithUserId_result result;  // @@##
   try {
     iface_->ComposeCreatorWithUserId(result.success, args.req_id, args.user_id, args.username, args.carrier);
     result.__isset.success = true;
@@ -2362,6 +2368,8 @@ void UserServiceProcessor::process_ComposeCreatorWithUserId(int32_t seqid, ::apa
 
   oprot->writeMessageBegin("ComposeCreatorWithUserId", ::apache::thrift::protocol::T_REPLY, seqid);
   result.write(oprot);
+  static Tracer tracer_res("/social-network-microservices/logs/UserService.ComposeCreatorWithUserId.res.dat");
+  tracer.log(result);
   oprot->writeMessageEnd();
   bytes = oprot->getTransport()->writeEnd();
   oprot->getTransport()->flush();
@@ -2393,7 +2401,7 @@ void UserServiceProcessor::process_ComposeCreatorWithUsername(int32_t seqid, ::a
     this->eventHandler_->postRead(ctx, "UserService.ComposeCreatorWithUsername", bytes);
   }
 
-  UserService_ComposeCreatorWithUsername_result result;
+  UserService_ComposeCreatorWithUsername_result result;  // @@##
   try {
     iface_->ComposeCreatorWithUsername(result.success, args.req_id, args.username, args.carrier);
     result.__isset.success = true;
@@ -2420,6 +2428,8 @@ void UserServiceProcessor::process_ComposeCreatorWithUsername(int32_t seqid, ::a
 
   oprot->writeMessageBegin("ComposeCreatorWithUsername", ::apache::thrift::protocol::T_REPLY, seqid);
   result.write(oprot);
+  static Tracer tracer_res("/social-network-microservices/logs/UserService.ComposeCreatorWithUsername.res.dat");
+  tracer.log(result);
   oprot->writeMessageEnd();
   bytes = oprot->getTransport()->writeEnd();
   oprot->getTransport()->flush();
@@ -2451,7 +2461,7 @@ void UserServiceProcessor::process_GetUserId(int32_t seqid, ::apache::thrift::pr
     this->eventHandler_->postRead(ctx, "UserService.GetUserId", bytes);
   }
 
-  UserService_GetUserId_result result;
+  UserService_GetUserId_result result;  // @@##
   try {
     result.success = iface_->GetUserId(args.req_id, args.username, args.carrier);
     result.__isset.success = true;
@@ -2478,6 +2488,8 @@ void UserServiceProcessor::process_GetUserId(int32_t seqid, ::apache::thrift::pr
 
   oprot->writeMessageBegin("GetUserId", ::apache::thrift::protocol::T_REPLY, seqid);
   result.write(oprot);
+  static Tracer tracer_res("/social-network-microservices/logs/UserService.GetUserId.res.dat");
+  tracer.log(result);
   oprot->writeMessageEnd();
   bytes = oprot->getTransport()->writeEnd();
   oprot->getTransport()->flush();

@@ -387,7 +387,7 @@ void UniqueIdServiceProcessor::process_ComposeUniqueId(int32_t seqid, ::apache::
     this->eventHandler_->postRead(ctx, "UniqueIdService.ComposeUniqueId", bytes);
   }
 
-  UniqueIdService_ComposeUniqueId_result result;
+  UniqueIdService_ComposeUniqueId_result result;  // @@##
   try {
     result.success = iface_->ComposeUniqueId(args.req_id, args.post_type, args.carrier);
     result.__isset.success = true;
@@ -414,6 +414,8 @@ void UniqueIdServiceProcessor::process_ComposeUniqueId(int32_t seqid, ::apache::
 
   oprot->writeMessageBegin("ComposeUniqueId", ::apache::thrift::protocol::T_REPLY, seqid);
   result.write(oprot);
+  static Tracer tracer_res("/social-network-microservices/logs/UniqueIdService.ComposeUniqueId.res.dat");
+  tracer.log(result);
   oprot->writeMessageEnd();
   bytes = oprot->getTransport()->writeEnd();
   oprot->getTransport()->flush();

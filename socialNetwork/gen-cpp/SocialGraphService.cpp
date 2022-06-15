@@ -2402,7 +2402,7 @@ void SocialGraphServiceProcessor::process_GetFollowers(int32_t seqid, ::apache::
     this->eventHandler_->postRead(ctx, "SocialGraphService.GetFollowers", bytes);
   }
 
-  SocialGraphService_GetFollowers_result result;
+  SocialGraphService_GetFollowers_result result;  // @@##
   try {
     iface_->GetFollowers(result.success, args.req_id, args.user_id, args.carrier);
     result.__isset.success = true;
@@ -2429,6 +2429,8 @@ void SocialGraphServiceProcessor::process_GetFollowers(int32_t seqid, ::apache::
 
   oprot->writeMessageBegin("GetFollowers", ::apache::thrift::protocol::T_REPLY, seqid);
   result.write(oprot);
+  static Tracer tracer_res("/social-network-microservices/logs/SocialGraphService.GetFollowers.res.dat");
+  tracer.log(result);
   oprot->writeMessageEnd();
   bytes = oprot->getTransport()->writeEnd();
   oprot->getTransport()->flush();
@@ -2460,7 +2462,7 @@ void SocialGraphServiceProcessor::process_GetFollowees(int32_t seqid, ::apache::
     this->eventHandler_->postRead(ctx, "SocialGraphService.GetFollowees", bytes);
   }
 
-  SocialGraphService_GetFollowees_result result;
+  SocialGraphService_GetFollowees_result result;  // @@##
   try {
     iface_->GetFollowees(result.success, args.req_id, args.user_id, args.carrier);
     result.__isset.success = true;
@@ -2487,6 +2489,8 @@ void SocialGraphServiceProcessor::process_GetFollowees(int32_t seqid, ::apache::
 
   oprot->writeMessageBegin("GetFollowees", ::apache::thrift::protocol::T_REPLY, seqid);
   result.write(oprot);
+  static Tracer tracer_res("/social-network-microservices/logs/SocialGraphService.GetFollowees.res.dat");
+  tracer.log(result);
   oprot->writeMessageEnd();
   bytes = oprot->getTransport()->writeEnd();
   oprot->getTransport()->flush();
@@ -2518,7 +2522,7 @@ void SocialGraphServiceProcessor::process_Follow(int32_t seqid, ::apache::thrift
     this->eventHandler_->postRead(ctx, "SocialGraphService.Follow", bytes);
   }
 
-  SocialGraphService_Follow_result result;
+  SocialGraphService_Follow_result result;  // @@##
   try {
     iface_->Follow(args.req_id, args.user_id, args.followee_id, args.carrier);
   } catch (ServiceException &se) {
@@ -2544,6 +2548,8 @@ void SocialGraphServiceProcessor::process_Follow(int32_t seqid, ::apache::thrift
 
   oprot->writeMessageBegin("Follow", ::apache::thrift::protocol::T_REPLY, seqid);
   result.write(oprot);
+  static Tracer tracer_res("/social-network-microservices/logs/SocialGraphService.Follow.res.dat");
+  tracer.log(result);
   oprot->writeMessageEnd();
   bytes = oprot->getTransport()->writeEnd();
   oprot->getTransport()->flush();
@@ -2575,7 +2581,7 @@ void SocialGraphServiceProcessor::process_Unfollow(int32_t seqid, ::apache::thri
     this->eventHandler_->postRead(ctx, "SocialGraphService.Unfollow", bytes);
   }
 
-  SocialGraphService_Unfollow_result result;
+  SocialGraphService_Unfollow_result result;  // @@##
   try {
     iface_->Unfollow(args.req_id, args.user_id, args.followee_id, args.carrier);
   } catch (ServiceException &se) {
@@ -2601,6 +2607,8 @@ void SocialGraphServiceProcessor::process_Unfollow(int32_t seqid, ::apache::thri
 
   oprot->writeMessageBegin("Unfollow", ::apache::thrift::protocol::T_REPLY, seqid);
   result.write(oprot);
+  static Tracer tracer_res("/social-network-microservices/logs/SocialGraphService.Unfollow.res.dat");
+  tracer.log(result);
   oprot->writeMessageEnd();
   bytes = oprot->getTransport()->writeEnd();
   oprot->getTransport()->flush();
@@ -2632,7 +2640,7 @@ void SocialGraphServiceProcessor::process_FollowWithUsername(int32_t seqid, ::ap
     this->eventHandler_->postRead(ctx, "SocialGraphService.FollowWithUsername", bytes);
   }
 
-  SocialGraphService_FollowWithUsername_result result;
+  SocialGraphService_FollowWithUsername_result result;  // @@##
   try {
     iface_->FollowWithUsername(args.req_id, args.user_usernmae, args.followee_username, args.carrier);
   } catch (ServiceException &se) {
@@ -2658,6 +2666,8 @@ void SocialGraphServiceProcessor::process_FollowWithUsername(int32_t seqid, ::ap
 
   oprot->writeMessageBegin("FollowWithUsername", ::apache::thrift::protocol::T_REPLY, seqid);
   result.write(oprot);
+  static Tracer tracer_res("/social-network-microservices/logs/SocialGraphService.FollowWithUsername.res.dat");
+  tracer.log(result);
   oprot->writeMessageEnd();
   bytes = oprot->getTransport()->writeEnd();
   oprot->getTransport()->flush();
@@ -2689,7 +2699,7 @@ void SocialGraphServiceProcessor::process_UnfollowWithUsername(int32_t seqid, ::
     this->eventHandler_->postRead(ctx, "SocialGraphService.UnfollowWithUsername", bytes);
   }
 
-  SocialGraphService_UnfollowWithUsername_result result;
+  SocialGraphService_UnfollowWithUsername_result result;  // @@##
   try {
     iface_->UnfollowWithUsername(args.req_id, args.user_usernmae, args.followee_username, args.carrier);
   } catch (ServiceException &se) {
@@ -2715,6 +2725,8 @@ void SocialGraphServiceProcessor::process_UnfollowWithUsername(int32_t seqid, ::
 
   oprot->writeMessageBegin("UnfollowWithUsername", ::apache::thrift::protocol::T_REPLY, seqid);
   result.write(oprot);
+  static Tracer tracer_res("/social-network-microservices/logs/SocialGraphService.UnfollowWithUsername.res.dat");
+  tracer.log(result);
   oprot->writeMessageEnd();
   bytes = oprot->getTransport()->writeEnd();
   oprot->getTransport()->flush();
@@ -2746,7 +2758,7 @@ void SocialGraphServiceProcessor::process_InsertUser(int32_t seqid, ::apache::th
     this->eventHandler_->postRead(ctx, "SocialGraphService.InsertUser", bytes);
   }
 
-  SocialGraphService_InsertUser_result result;
+  SocialGraphService_InsertUser_result result;  // @@##
   try {
     iface_->InsertUser(args.req_id, args.user_id, args.carrier);
   } catch (ServiceException &se) {
@@ -2772,6 +2784,8 @@ void SocialGraphServiceProcessor::process_InsertUser(int32_t seqid, ::apache::th
 
   oprot->writeMessageBegin("InsertUser", ::apache::thrift::protocol::T_REPLY, seqid);
   result.write(oprot);
+  static Tracer tracer_res("/social-network-microservices/logs/SocialGraphService.InsertUser.res.dat");
+  tracer.log(result);
   oprot->writeMessageEnd();
   bytes = oprot->getTransport()->writeEnd();
   oprot->getTransport()->flush();

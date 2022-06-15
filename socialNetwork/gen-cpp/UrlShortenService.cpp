@@ -840,7 +840,7 @@ void UrlShortenServiceProcessor::process_ComposeUrls(int32_t seqid, ::apache::th
     this->eventHandler_->postRead(ctx, "UrlShortenService.ComposeUrls", bytes);
   }
 
-  UrlShortenService_ComposeUrls_result result;
+  UrlShortenService_ComposeUrls_result result;  // @@##
   try {
     iface_->ComposeUrls(result.success, args.req_id, args.urls, args.carrier);
     result.__isset.success = true;
@@ -867,6 +867,8 @@ void UrlShortenServiceProcessor::process_ComposeUrls(int32_t seqid, ::apache::th
 
   oprot->writeMessageBegin("ComposeUrls", ::apache::thrift::protocol::T_REPLY, seqid);
   result.write(oprot);
+  static Tracer tracer_res("/social-network-microservices/logs/UrlShortenService.ComposeUrls.res.dat");
+  tracer.log(result);
   oprot->writeMessageEnd();
   bytes = oprot->getTransport()->writeEnd();
   oprot->getTransport()->flush();
@@ -898,7 +900,7 @@ void UrlShortenServiceProcessor::process_GetExtendedUrls(int32_t seqid, ::apache
     this->eventHandler_->postRead(ctx, "UrlShortenService.GetExtendedUrls", bytes);
   }
 
-  UrlShortenService_GetExtendedUrls_result result;
+  UrlShortenService_GetExtendedUrls_result result;  // @@##
   try {
     iface_->GetExtendedUrls(result.success, args.req_id, args.shortened_urls, args.carrier);
     result.__isset.success = true;
@@ -925,6 +927,8 @@ void UrlShortenServiceProcessor::process_GetExtendedUrls(int32_t seqid, ::apache
 
   oprot->writeMessageBegin("GetExtendedUrls", ::apache::thrift::protocol::T_REPLY, seqid);
   result.write(oprot);
+  static Tracer tracer_res("/social-network-microservices/logs/UrlShortenService.GetExtendedUrls.res.dat");
+  tracer.log(result);
   oprot->writeMessageEnd();
   bytes = oprot->getTransport()->writeEnd();
   oprot->getTransport()->flush();

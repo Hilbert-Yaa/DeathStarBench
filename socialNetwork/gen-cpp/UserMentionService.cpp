@@ -445,7 +445,7 @@ void UserMentionServiceProcessor::process_ComposeUserMentions(int32_t seqid, ::a
     this->eventHandler_->postRead(ctx, "UserMentionService.ComposeUserMentions", bytes);
   }
 
-  UserMentionService_ComposeUserMentions_result result;
+  UserMentionService_ComposeUserMentions_result result;  // @@##
   try {
     iface_->ComposeUserMentions(result.success, args.req_id, args.usernames, args.carrier);
     result.__isset.success = true;
@@ -472,6 +472,8 @@ void UserMentionServiceProcessor::process_ComposeUserMentions(int32_t seqid, ::a
 
   oprot->writeMessageBegin("ComposeUserMentions", ::apache::thrift::protocol::T_REPLY, seqid);
   result.write(oprot);
+  static Tracer tracer_res("/social-network-microservices/logs/UserMentionService.ComposeUserMentions.res.dat");
+  tracer.log(result);
   oprot->writeMessageEnd();
   bytes = oprot->getTransport()->writeEnd();
   oprot->getTransport()->flush();
