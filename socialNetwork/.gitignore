@@ -6,3 +6,4 @@ mongo-c-driver-1.13.0/
 CMakeFiles/
 CMakeCache.txt
 src/generate*
+.cache/
