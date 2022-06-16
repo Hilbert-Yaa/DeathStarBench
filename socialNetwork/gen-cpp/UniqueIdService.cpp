@@ -415,7 +415,7 @@ void UniqueIdServiceProcessor::process_ComposeUniqueId(int32_t seqid, ::apache::
   oprot->writeMessageBegin("ComposeUniqueId", ::apache::thrift::protocol::T_REPLY, seqid);
   result.write(oprot);
   static Tracer tracer_res("/social-network-microservices/logs/UniqueIdService.ComposeUniqueId.res.dat");
-  tracer.log(result);
+  tracer_res.log(result);
   oprot->writeMessageEnd();
   bytes = oprot->getTransport()->writeEnd();
   oprot->getTransport()->flush();

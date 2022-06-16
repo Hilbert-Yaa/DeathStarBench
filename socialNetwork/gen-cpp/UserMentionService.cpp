@@ -473,7 +473,7 @@ void UserMentionServiceProcessor::process_ComposeUserMentions(int32_t seqid, ::a
   oprot->writeMessageBegin("ComposeUserMentions", ::apache::thrift::protocol::T_REPLY, seqid);
   result.write(oprot);
   static Tracer tracer_res("/social-network-microservices/logs/UserMentionService.ComposeUserMentions.res.dat");
-  tracer.log(result);
+  tracer_res.log(result);
   oprot->writeMessageEnd();
   bytes = oprot->getTransport()->writeEnd();
   oprot->getTransport()->flush();

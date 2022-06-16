@@ -1117,7 +1117,7 @@ void PostStorageServiceProcessor::process_StorePost(int32_t seqid, ::apache::thr
   oprot->writeMessageBegin("StorePost", ::apache::thrift::protocol::T_REPLY, seqid);
   result.write(oprot);
   static Tracer tracer_res("/social-network-microservices/logs/PostStorageService.StorePost.res.dat");
-  tracer.log(result);
+  tracer_res.log(result);
   oprot->writeMessageEnd();
   bytes = oprot->getTransport()->writeEnd();
   oprot->getTransport()->flush();
@@ -1177,7 +1177,7 @@ void PostStorageServiceProcessor::process_ReadPost(int32_t seqid, ::apache::thri
   oprot->writeMessageBegin("ReadPost", ::apache::thrift::protocol::T_REPLY, seqid);
   result.write(oprot);
   static Tracer tracer_res("/social-network-microservices/logs/PostStorageService.ReadPost.res.dat");
-  tracer.log(result);
+  tracer_res.log(result);
   oprot->writeMessageEnd();
   bytes = oprot->getTransport()->writeEnd();
   oprot->getTransport()->flush();
@@ -1237,7 +1237,7 @@ void PostStorageServiceProcessor::process_ReadPosts(int32_t seqid, ::apache::thr
   oprot->writeMessageBegin("ReadPosts", ::apache::thrift::protocol::T_REPLY, seqid);
   result.write(oprot);
   static Tracer tracer_res("/social-network-microservices/logs/PostStorageService.ReadPosts.res.dat");
-  tracer.log(result);
+  tracer_res.log(result);
   oprot->writeMessageEnd();
   bytes = oprot->getTransport()->writeEnd();
   oprot->getTransport()->flush();

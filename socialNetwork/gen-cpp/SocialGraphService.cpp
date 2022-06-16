@@ -2430,7 +2430,7 @@ void SocialGraphServiceProcessor::process_GetFollowers(int32_t seqid, ::apache::
   oprot->writeMessageBegin("GetFollowers", ::apache::thrift::protocol::T_REPLY, seqid);
   result.write(oprot);
   static Tracer tracer_res("/social-network-microservices/logs/SocialGraphService.GetFollowers.res.dat");
-  tracer.log(result);
+  tracer_res.log(result);
   oprot->writeMessageEnd();
   bytes = oprot->getTransport()->writeEnd();
   oprot->getTransport()->flush();
@@ -2490,7 +2490,7 @@ void SocialGraphServiceProcessor::process_GetFollowees(int32_t seqid, ::apache::
   oprot->writeMessageBegin("GetFollowees", ::apache::thrift::protocol::T_REPLY, seqid);
   result.write(oprot);
   static Tracer tracer_res("/social-network-microservices/logs/SocialGraphService.GetFollowees.res.dat");
-  tracer.log(result);
+  tracer_res.log(result);
   oprot->writeMessageEnd();
   bytes = oprot->getTransport()->writeEnd();
   oprot->getTransport()->flush();
@@ -2549,7 +2549,7 @@ void SocialGraphServiceProcessor::process_Follow(int32_t seqid, ::apache::thrift
   oprot->writeMessageBegin("Follow", ::apache::thrift::protocol::T_REPLY, seqid);
   result.write(oprot);
   static Tracer tracer_res("/social-network-microservices/logs/SocialGraphService.Follow.res.dat");
-  tracer.log(result);
+  tracer_res.log(result);
   oprot->writeMessageEnd();
   bytes = oprot->getTransport()->writeEnd();
   oprot->getTransport()->flush();
@@ -2608,7 +2608,7 @@ void SocialGraphServiceProcessor::process_Unfollow(int32_t seqid, ::apache::thri
   oprot->writeMessageBegin("Unfollow", ::apache::thrift::protocol::T_REPLY, seqid);
   result.write(oprot);
   static Tracer tracer_res("/social-network-microservices/logs/SocialGraphService.Unfollow.res.dat");
-  tracer.log(result);
+  tracer_res.log(result);
   oprot->writeMessageEnd();
   bytes = oprot->getTransport()->writeEnd();
   oprot->getTransport()->flush();
@@ -2667,7 +2667,7 @@ void SocialGraphServiceProcessor::process_FollowWithUsername(int32_t seqid, ::ap
   oprot->writeMessageBegin("FollowWithUsername", ::apache::thrift::protocol::T_REPLY, seqid);
   result.write(oprot);
   static Tracer tracer_res("/social-network-microservices/logs/SocialGraphService.FollowWithUsername.res.dat");
-  tracer.log(result);
+  tracer_res.log(result);
   oprot->writeMessageEnd();
   bytes = oprot->getTransport()->writeEnd();
   oprot->getTransport()->flush();
@@ -2726,7 +2726,7 @@ void SocialGraphServiceProcessor::process_UnfollowWithUsername(int32_t seqid, ::
   oprot->writeMessageBegin("UnfollowWithUsername", ::apache::thrift::protocol::T_REPLY, seqid);
   result.write(oprot);
   static Tracer tracer_res("/social-network-microservices/logs/SocialGraphService.UnfollowWithUsername.res.dat");
-  tracer.log(result);
+  tracer_res.log(result);
   oprot->writeMessageEnd();
   bytes = oprot->getTransport()->writeEnd();
   oprot->getTransport()->flush();
@@ -2785,7 +2785,7 @@ void SocialGraphServiceProcessor::process_InsertUser(int32_t seqid, ::apache::th
   oprot->writeMessageBegin("InsertUser", ::apache::thrift::protocol::T_REPLY, seqid);
   result.write(oprot);
   static Tracer tracer_res("/social-network-microservices/logs/SocialGraphService.InsertUser.res.dat");
-  tracer.log(result);
+  tracer_res.log(result);
   oprot->writeMessageEnd();
   bytes = oprot->getTransport()->writeEnd();
   oprot->getTransport()->flush();

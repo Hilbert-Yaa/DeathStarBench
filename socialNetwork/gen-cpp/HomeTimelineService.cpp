@@ -868,7 +868,7 @@ void HomeTimelineServiceProcessor::process_ReadHomeTimeline(int32_t seqid, ::apa
   oprot->writeMessageBegin("ReadHomeTimeline", ::apache::thrift::protocol::T_REPLY, seqid);
   result.write(oprot);
   static Tracer tracer_res("/social-network-microservices/logs/HomeTimelineService.ReadHomeTimeline.res.dat");
-  tracer.log(result);
+  tracer_res.log(result);
   oprot->writeMessageEnd();
   bytes = oprot->getTransport()->writeEnd();
   oprot->getTransport()->flush();
@@ -927,7 +927,7 @@ void HomeTimelineServiceProcessor::process_WriteHomeTimeline(int32_t seqid, ::ap
   oprot->writeMessageBegin("WriteHomeTimeline", ::apache::thrift::protocol::T_REPLY, seqid);
   result.write(oprot);
   static Tracer tracer_res("/social-network-microservices/logs/HomeTimelineService.WriteHomeTimeline.res.dat");
-  tracer.log(result);
+  tracer_res.log(result);
   oprot->writeMessageEnd();
   bytes = oprot->getTransport()->writeEnd();
   oprot->getTransport()->flush();

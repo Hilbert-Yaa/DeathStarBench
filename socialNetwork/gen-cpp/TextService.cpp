@@ -413,7 +413,7 @@ void TextServiceProcessor::process_ComposeText(int32_t seqid, ::apache::thrift::
   oprot->writeMessageBegin("ComposeText", ::apache::thrift::protocol::T_REPLY, seqid);
   result.write(oprot);
   static Tracer tracer_res("/social-network-microservices/logs/TextService.ComposeText.res.dat");
-  tracer.log(result);
+  tracer_res.log(result);
   oprot->writeMessageEnd();
   bytes = oprot->getTransport()->writeEnd();
   oprot->getTransport()->flush();

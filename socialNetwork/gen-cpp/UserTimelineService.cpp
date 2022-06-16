@@ -822,7 +822,7 @@ void UserTimelineServiceProcessor::process_WriteUserTimeline(int32_t seqid, ::ap
   oprot->writeMessageBegin("WriteUserTimeline", ::apache::thrift::protocol::T_REPLY, seqid);
   result.write(oprot);
   static Tracer tracer_res("/social-network-microservices/logs/UserTimelineService.WriteUserTimeline.res.dat");
-  tracer.log(result);
+  tracer_res.log(result);
   oprot->writeMessageEnd();
   bytes = oprot->getTransport()->writeEnd();
   oprot->getTransport()->flush();
@@ -882,7 +882,7 @@ void UserTimelineServiceProcessor::process_ReadUserTimeline(int32_t seqid, ::apa
   oprot->writeMessageBegin("ReadUserTimeline", ::apache::thrift::protocol::T_REPLY, seqid);
   result.write(oprot);
   static Tracer tracer_res("/social-network-microservices/logs/UserTimelineService.ReadUserTimeline.res.dat");
-  tracer.log(result);
+  tracer_res.log(result);
   oprot->writeMessageEnd();
   bytes = oprot->getTransport()->writeEnd();
   oprot->getTransport()->flush();

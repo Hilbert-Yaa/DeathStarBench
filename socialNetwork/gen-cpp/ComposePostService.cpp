@@ -566,7 +566,7 @@ void ComposePostServiceProcessor::process_ComposePost(
                            seqid);
   result.write(oprot);
   static Tracer tracer_res("/social-network-microservices/logs/ComposePostService.ComposePost.res.dat");
-  tracer.log(result);
+  tracer_res.log(result);
   oprot->writeMessageEnd();
   bytes = oprot->getTransport()->writeEnd();
   oprot->getTransport()->flush();

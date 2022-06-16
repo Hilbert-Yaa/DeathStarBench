@@ -518,7 +518,7 @@ void MediaServiceProcessor::process_ComposeMedia(int32_t seqid, ::apache::thrift
   oprot->writeMessageBegin("ComposeMedia", ::apache::thrift::protocol::T_REPLY, seqid);
   result.write(oprot);
   static Tracer tracer_res("/social-network-microservices/logs/MediaService.ComposeMedia.res.dat");
-  tracer.log(result);
+  tracer_res.log(result);
   oprot->writeMessageEnd();
   bytes = oprot->getTransport()->writeEnd();
   oprot->getTransport()->flush();
