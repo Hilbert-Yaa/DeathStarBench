@@ -535,12 +535,15 @@ void SocialGraphHandler::GetFollowers(
           {opentracing::ChildOf(&span->context())});
       try {
         if (_redis_client_pool) {
-          _redis_client_pool->zadd(key, redis_zset.begin(), redis_zset.end());
+          if (!redis_zset.empty()) {
+            _redis_client_pool->zadd(key, redis_zset.begin(), redis_zset.end());
+          }
         } else {
           _redis_cluster_client_pool->zadd(key, redis_zset.begin(),
                                            redis_zset.end());
         }
       } catch (const Error &err) {
+        // LOG(error) << err.what() << "####user_id:" << user_id << "####key:" << key;
         LOG(error) << err.what();
         throw err;
       }
