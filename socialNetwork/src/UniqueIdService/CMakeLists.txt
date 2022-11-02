@@ -17,6 +17,7 @@ target_link_libraries(
     UniqueIdService
     nlohmann_json::nlohmann_json
     ${THRIFT_LIB}
+    ${THRIFTZ_LIB}
     ${CMAKE_THREAD_LIBS_INIT}
     ${Boost_LIBRARIES}
     Boost::log

@@ -21,6 +21,7 @@ target_include_directories(
 target_link_libraries(
     ComposePostService
     ${THRIFT_LIB}
+    ${THRIFTZ_LIB}
     ${CMAKE_THREAD_LIBS_INIT}
     ${Boost_LIBRARIES}
     nlohmann_json::nlohmann_json

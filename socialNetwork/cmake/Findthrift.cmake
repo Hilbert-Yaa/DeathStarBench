@@ -54,6 +54,7 @@ find_path(THRIFT_STATIC_LIB_PATH libthrift.a PATHS ${THRIFT_LIB_PATHS})
 
 # prefer the thrift version supplied in THRIFT_HOME
 find_library(THRIFT_LIB NAMES thrift HINTS ${THRIFT_LIB_PATHS})
+find_library(THRIFTZ_LIB NAMES thriftz HINTS ${THRIFT_LIB_PATHS})
 
 find_program(THRIFT_COMPILER thrift
     ${THRIFT_ROOT}/bin
@@ -86,6 +87,7 @@ endif ()
 
 mark_as_advanced(
     THRIFT_LIB
+    THRIFTZ_LIB
     THRIFT_COMPILER
     THRIFT_INCLUDE_DIR
     thriftstatic
